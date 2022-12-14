@@ -6,7 +6,7 @@ public class RockPaperScissor {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Voices.theme16("src/main/java/voices/theme16sec.wav");
+        Voices.theme16();
         result();
     }
     static int yourScore,javasScore;
@@ -32,6 +32,7 @@ public class RockPaperScissor {
                 break;
             default:
             System.out.println("There is no escape from here loser. Make a decision!!!");
+            Voices.getOverHere();
             yourChoose=scan.next().toUpperCase();
                 }}while(flag);
 
@@ -99,21 +100,54 @@ public class RockPaperScissor {
     public static void result() {
 
         System.out.println("Let's Play");
-        //Voices.round1("src/main/java/voices/round_1.wav");
+        Voices.round1();
 
         System.out.println("Wish luck for yourself and choose one of R (for rock) or P (for paper) or S (for scissor)");
         for (int i = 1; i < 4; i++) {
-            if (i == 2)
+            if (i==1){
+                play();
+                if (yourScore>javasScore){
+                    Voices.fatality();
+                } else if (javasScore>=yourScore) {
+                    Voices.thatWasPathetic();
+                }
+            } else if (i == 2)
                 {System.out.println("----------------------------------------------------------------------------------");
-                 System.out.println("Make your choose for 2. Round!!!  R (for rock) or P (for paper) or S (for scissor)");
+                Voices.round2();
+                System.out.println("Make your choose for 2. Round!!!  R (for rock) or P (for paper) or S (for scissor)");
+
+                    play();
+                    if (yourScore>javasScore){
+                        Voices.fatality();
+                    } else if (javasScore>=yourScore) {
+                        Voices.thatWasPathetic();
+                    }
                     }
             else if (i == 3)
             {System.out.println("----------------------------------------------------------------------------------");
+             Voices.finalRound();
              System.out.println("Starting of the End!!! Make your last decision  R (for rock) or P (for paper) or S (for scissor)");
+                play();
+                if (yourScore==3 || javasScore==3){
+                    Voices.finishHim();
+                    Voices.fatality();
+                } else {
+                    Voices.finishHim();
+                    if(yourScore>javasScore) {
+                        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("FINAL SCORE : YOU WIN!!!");
+                    } else if (yourScore<javasScore) {
+                        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("FINAL SCORE : JAVA WIN!!!");
+                    } else {
+                        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("FINAL SCORE : SCORE TIED!!!");
+                        Voices.thatWasPathetic();
+                    }
+                }
+
             }
-            play();
+
         }
     }
-
-
 }
