@@ -6,7 +6,7 @@ public class RockPaperScissor {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Voices.theme16();
+        //Voices.theme16();
         result();
     }
     static int yourScore,javasScore;
@@ -131,7 +131,13 @@ public class RockPaperScissor {
                 if (yourScore==3 || javasScore==3){
                     Voices.finishHim();
                     Voices.fatality();
-                } else {
+                    if(yourScore>javasScore) {
+                        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("FINAL SCORE : YOU WIN!!!");
+                    } else if (yourScore<javasScore) {
+                        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("FINAL SCORE : JAVA WIN!!!");
+                } }else {
                     Voices.finishHim();
                     if(yourScore>javasScore) {
                         System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
